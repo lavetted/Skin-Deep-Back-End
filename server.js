@@ -23,14 +23,13 @@ app.use(globalErr);
 // Start server ONLY after DB connects
 const startServer = async () => {
   try {
-    await connectDB();
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT} 🚀`);
+      console.log(`server is running on PORT: ${PORT}`);
+      routesReport.print();
     });
   } catch (err) {
     console.error("Failed to start server:", err.message);
   }
 };
 
-routesReport.print();
 startServer();
