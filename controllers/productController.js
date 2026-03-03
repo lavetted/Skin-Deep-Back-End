@@ -1,25 +1,25 @@
-const Product = require("../models/Product");
+import Product from "../models/Product.js";
 
 // GET all products
-exports.getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res) => {
   const products = await Product.find();
   res.json(products);
 };
 
 // GET product by ID
-exports.getProductById = async (req, res) => {
+const getProductById = async (req, res) => {
   const product = await Product.findById(req.params.id);
   res.json(product);
 };
 
 // CREATE product
-exports.createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   const product = await Product.create(req.body);
   res.status(201).json(product);
 };
 
 // UPDATE product
-exports.updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -27,7 +27,15 @@ exports.updateProduct = async (req, res) => {
 };
 
 // DELETE product
-exports.deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
   res.json({ message: "Product deleted" });
+};
+
+export default {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 };
