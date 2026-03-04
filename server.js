@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDB from "./db/conn.js";
 import cors from "cors";
 import productRoutes from "./routes/productRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 import * as rowdy from "rowdy-logger";
 
 // Setup
@@ -23,6 +24,7 @@ const routesReport = rowdy.begin(app);
 // Routes
 app.use(cors());
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Global error handler
 app.use(globalErr);
