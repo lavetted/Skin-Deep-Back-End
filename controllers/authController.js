@@ -1,8 +1,30 @@
 import User from "../models/User.js";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
-export const register = async (req, res) => {
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(401).json({ message: "Invalid email" });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid password" });
+  }
+
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+
+  res.json({ token, user });
+};
+
+export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -13,21 +35,5 @@ export const register = async (req, res) => {
     password: hashedPassword,
   });
 
-  res.json(user);
-};
-
-export const login = async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-  if (!user) return res.status(400).json({ message: "User not found" });
-
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
-
-  const token = jwt.sign({ id: user._id }, "SECRET_KEY", {
-    expiresIn: "7d",
-  });
-
-  res.json({ token });
+  res.status(201).json(user);
 };

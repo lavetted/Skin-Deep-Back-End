@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", protect, getCart);
 router.post("/", protect, addToCart);
-router.put("/:id", updateCartItem);
-router.delete("/:id", removeCartItem);
+router.put("/:id", protect, updateCartItem);
+router.delete("/:id", protect, removeCartItem);
 
 export default router;

@@ -6,6 +6,8 @@ import connectDB from "./db/conn.js";
 import cors from "cors";
 import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import * as rowdy from "rowdy-logger";
 
 // Setup
@@ -25,6 +27,9 @@ const routesReport = rowdy.begin(app);
 app.use(cors());
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/users", authRoutes);
 
 // Global error handler
 app.use(globalErr);
