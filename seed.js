@@ -6,28 +6,31 @@ dotenv.config();
 
 const products = [
   {
-    name: "Hydrating Face Cream",
-    description: "Deep hydration formula",
-    price: 45,
-    category: "Skincare",
-    brand: "GlowLab",
-    imageUrl: "https://via.placeholder.com/200",
+    name: "Nioxin Shampoo & Conditioner Liter Duo Sets",
+    description:
+      "For Natural, Colored, & Damaged Hair with Light to Progressed Thinning | Strengthen & Boost Hair Density",
+    price: 100,
+    category: "Haircare",
+    brand: "Nioxin",
+    imageUrl: "https://m.media-amazon.com/images/I/71aZxnpL8nL._SL1500_.jpg",
   },
   {
-    name: "Professional Makeup Palette",
-    description: "24 vibrant shades",
-    price: 52,
-    category: "Makeup",
-    brand: "BeautyPro",
-    imageUrl: "https://via.placeholder.com/200",
+    name: "Micro Ingredients Oil of Oregano Softgels, 300 Count",
+    description:
+      "2 in 1 Formulated with Black Seed Oil | 4X Strength Carvacrol & Thymoquinone | Plant Based, Non-GMO | Supports Immune Health",
+    price: 35,
+    category: "Herbal Supplements",
+    brand: "Micro Ingredients",
+    imageUrl: "https://m.media-amazon.com/images/I/618fR9xnPgL._AC_SL1500_.jpg",
   },
   {
-    name: "Luxury Eau de Parfum",
-    description: "Elegant long-lasting fragrance",
-    price: 89,
-    category: "Fragrance",
+    name: "GIN GINS Lemon Ginger Chews",
+    description:
+      "Natural Fresh Ginger Candy by The Ginger People - Individually Wrapped Healthy Candy - Lemon Flavor - Large 1 lb Bag (16oz) - Pack of 1",
+    price: 15,
+    category: "Ginger Candy",
     brand: "AromaLux",
-    imageUrl: "https://via.placeholder.com/200",
+    imageUrl: "https://m.media-amazon.com/images/I/81MGgFiC9kL._SL1500_.jpg",
   },
 ];
 

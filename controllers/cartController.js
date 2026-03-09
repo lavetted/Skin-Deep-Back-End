@@ -4,14 +4,18 @@ export const getCart = async (req, res) => {
   const cart = await Cart.findOne({ user: req.user.id }).populate(
     "items.product",
   );
+
   res.json(cart);
 };
 
 export const addToCart = async (req, res) => {
   const { productId } = req.body;
 
-  let cart = await Cart.findOne({ user: req.user.id });
+  let cart = await Cart.findOne({ user: req.user.id }).populate(
+    "items.product",
+  );
 
+  // create cart if it doesn't exist
   if (!cart) {
     cart = await Cart.create({
       user: req.user.id,
@@ -20,7 +24,7 @@ export const addToCart = async (req, res) => {
   }
 
   const existingItem = cart.items.find(
-    (item) => item.product.toString() === productId,
+    (item) => item.product._id.toString() === productId,
   );
 
   if (existingItem) {
@@ -33,7 +37,12 @@ export const addToCart = async (req, res) => {
   }
 
   await cart.save();
-  res.json(cart);
+
+  const updatedCart = await Cart.findOne({ user: req.user.id }).populate(
+    "items.product",
+  );
+
+  res.json(updatedCart);
 };
 
 export const updateCartItem = async (req, res) => {
@@ -42,12 +51,18 @@ export const updateCartItem = async (req, res) => {
   const cart = await Cart.findOne({ user: req.user.id });
 
   const item = cart.items.id(req.params.id);
+
   if (item) {
     item.quantity = quantity;
   }
 
   await cart.save();
-  res.json(cart);
+
+  const updatedCart = await Cart.findOne({ user: req.user.id }).populate(
+    "items.product",
+  );
+
+  res.json(updatedCart);
 };
 
 export const removeCartItem = async (req, res) => {
@@ -58,12 +73,10 @@ export const removeCartItem = async (req, res) => {
   );
 
   await cart.save();
-  res.json(cart);
-};
 
-export default {
-  getCart,
-  addToCart,
-  updateCartItem,
-  removeCartItem,
+  const updatedCart = await Cart.findOne({ user: req.user.id }).populate(
+    "items.product",
+  );
+
+  res.json(updatedCart);
 };
