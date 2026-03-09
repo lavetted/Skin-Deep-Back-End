@@ -32,6 +32,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/users", authRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/auth", authRoutes);
 
 // Global error handler
 app.use(globalErr);
