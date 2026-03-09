@@ -9,6 +9,7 @@ import cartRoutes from "./routes/cartRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 import * as rowdy from "rowdy-logger";
 
 // Setup
@@ -33,6 +34,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/users", authRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/payment", paymentRoutes);
 
 // Global error handler
 app.use(globalErr);
