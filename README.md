@@ -1,6 +1,7 @@
 # E-Commerce Backend API
 
 😎 Link to: [Front-End](https://github.com/lavetted/Skin-Deep-Front-End) 
+😍 Deployed from Render : [Website](https://skin-deep.onrender.com/)
 
 ## Overview
 
@@ -60,7 +61,7 @@ npm run dev
 The server will run at:
 
 ```
-http://localhost:3000
+https://skin-deep-back-end.onrender.com
 ```
 
 ---
